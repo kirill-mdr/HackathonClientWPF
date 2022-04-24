@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HackathonClient
+namespace HackathonClient.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для SessionsView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SessionsView : UserControl
     {
-        public MainWindow()
+        public SessionsView()
         {
             InitializeComponent();
-        }
-
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -4,9 +4,61 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HackathonClient"
+        xmlns:viewModel="clr-namespace:HackathonClient.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="700" Width="1000">
 
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    <Grid Background="#EEEEEE">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Image Source="/Images/logo.png" Grid.Column="0" Grid.Row="0"></Image>
+
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <RadioButton Content="Главная"
+                         Height="50"
+                         Foreground="Black"
+                         FontSize="18"
+                         Style="{StaticResource MenuButtonTheme}"
+                         IsChecked="True"
+                         Command="{Binding HomeViewCommand}"/>
+            <RadioButton Content="Сеансы"
+                         Height="50"
+                         Foreground="Black"
+                         FontSize="18"
+                         Style="{StaticResource MenuButtonTheme}"
+                         Command="{Binding SessionsViewCommand}"/>
+            <RadioButton Content="Переходы"
+                         Height="50"
+                         Foreground="Black"
+                         FontSize="18"
+                         Style="{StaticResource MenuButtonTheme}"/>
+            <RadioButton Content="Проверка неоднородности"
+                         Height="50"
+                         Foreground="Black"
+                         FontSize="18"
+                         Style="{StaticResource MenuButtonTheme}"/>
+            <RadioButton Content="Составление отчетов"
+                         Height="50"
+                         Foreground="Black"
+                         FontSize="18"
+                         Style="{StaticResource MenuButtonTheme}"
+                         Command="{Binding ReportViewCommand}"/>
+        </StackPanel>
+
+        <ContentControl 
+                        Grid.Column="1" 
+                        Margin="10,10,10,10"
+                        Content="{Binding CurrentView}" Grid.RowSpan="2"/>
     </Grid>
 </Window>

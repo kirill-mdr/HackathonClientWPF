@@ -2,8 +2,27 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:HackathonClient"
+             xmlns:viewModel="clr-namespace:HackathonClient.MVVM.ViewModel"
+             xmlns:view="clr-namespace:HackathonClient.MVVM.View"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/Texts.xaml"/>
+                <ResourceDictionary Source="Theme/Other.xaml"/>
+                <ResourceDictionary Source="Theme/Colors.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:SessionsViewModel}">
+                <view:SessionsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ReportViewModel}">
+                <view:ReportView/>
+            </DataTemplate>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
