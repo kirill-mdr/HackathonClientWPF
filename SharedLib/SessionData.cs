@@ -17,10 +17,10 @@ public class SessionData
 
 	public float TrackDetectorsAverage { get; set; }
 
-	public float[] TrackDetectors { get; set; }
+	public float?[] TrackDetectors { get; set; }
 
 	public float ODAverage { get; set; }
-	public float[] OnlineDetectors { get; set; }
+	public float?[] OnlineDetectors { get; set; }
 
 	public float SessionTemperature { get; set; }
 	public float Heterogeneity { get; set; }

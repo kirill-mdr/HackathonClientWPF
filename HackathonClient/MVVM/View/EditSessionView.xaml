@@ -3,10 +3,317 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HackathonClient.MVVM.View"
+        xmlns:local="clr-namespace:HackathonClient.MVVM.View" xmlns:viewmodel="clr-namespace:HackathonClient.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:EditSessionViewModel}"
         mc:Ignorable="d"
         Title="EditSessionView" Height="800" Width="600">
     <Grid>
+        <ScrollViewer>
+            <StackPanel HorizontalAlignment="Center" Margin="0 20 0 20">
+                <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                    <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Text="Номер сеанса: " />
+
+                    <TextBox
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.Id, UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"
+                                    IsReadOnly="True"/>
+                </UniformGrid>
+
+                <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                    <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"        
+                                    Text="Название организации: " />
+
+                    <TextBox
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.Organization, UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap" />
+                </UniformGrid>
+
+                <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                    <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Text="Объекты испытаний: " />
+                    <StackPanel Orientation="Vertical">
+                        <TextBox
+                                    Margin="10 10 10 0"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.ObjectID[0], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap" 
+                                    Tag="Объект испытаний 1"/>
+                        <TextBox
+                                    Margin="10 10 10 0"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.ObjectID[1], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap" 
+                                    Tag="Объект испытаний 2"/>
+                        <TextBox
+                                    Margin="10 10 10 0"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.ObjectID[2], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap" 
+                                    Tag="Объект испытаний 3"/>
+                        <TextBox
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.ObjectID[3], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap" 
+                                    Tag="Объект испытаний 4"/>
+                    </StackPanel>
+                </UniformGrid>
+
+                <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                    <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"        
+                                    Text="Код среды: " />
+
+                    <TextBox
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.Agent.EnvironmentId, UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap" />
+                </UniformGrid>
+
+                <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                    <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Text="Угол облучения: " />
+
+                    <TextBox
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.Angle, UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"/>
+                </UniformGrid>
+
+                <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                    <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"        
+                                    Text="Давление: " />
+
+                    <TextBox
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.Indicators.Pressure, UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap" />
+                </UniformGrid>
+
+                <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                    <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Text="Влажность: " />
+
+                    <TextBox
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.Indicators.Pressure, UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"/>
+                </UniformGrid>
+
+                <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                    <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"        
+                                    Text="Температура: " />
+
+                    <TextBox
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.Indicators.Temperature, UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap" />
+                </UniformGrid>
+
+                <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                    <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Text="Трековые детекторы: " />
+                    <StackPanel Orientation="Vertical">
+                        <TextBox
+                                    Margin="10 10 10 0"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.TrackDetectors[0], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap" 
+                                    Tag="Трековый детектор 1"/>
+                        <TextBox
+                                    Margin="10 10 10 0"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.TrackDetectors[1], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"  
+                                    Tag="Трековый детектор 2"/>
+                        <TextBox
+                                    Margin="10 10 10 0"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.TrackDetectors[3], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"  
+                                    Tag="Трековый детектор 3"/>
+                        <TextBox
+                                    Margin="10 10 10 0"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.TrackDetectors[4], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"  
+                                    Tag="Трековый детектор 4"/>
+                        <TextBox
+                                    Margin="10 10 10 0"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.TrackDetectors[5], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"  
+                                    Tag="Трековый детектор 5"/>
+                        <TextBox
+                                    Margin="10 10 10 0"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.TrackDetectors[6], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"  
+                                    Tag="Трековый детектор 6"/>
+                        <TextBox
+                                    Margin="10 10 10 0"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.TrackDetectors[7], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"  
+                                    Tag="Трековый детектор 7"/>
+                        <TextBox
+                                    Margin="10 10 10 0"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.TrackDetectors[8], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"  
+                                    Tag="Трековый детектор 8"/>
+                        <TextBox
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.TrackDetectors[9], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"  
+                                    Tag="Трековый детектор 9"/>
+                    </StackPanel>
+                </UniformGrid>
+
+                <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                    <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Text="On-line детекторы: " />
+                    <StackPanel Orientation="Vertical">
+                        <TextBox
+                                    Margin="10 10 10 0"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.OnlineDetectors[0], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"  
+                                    Tag="On-line детектор 1"/>
+                        <TextBox
+                                    Margin="10 10 10 0"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.OnlineDetectors[1], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"   
+                                    Tag="On-line детектор 2"/>
+                        <TextBox
+                                    Margin="10 10 10 0"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.OnlineDetectors[2], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"   
+                                    Tag="On-line детектор 3"/>
+                        <TextBox
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.OnlineDetectors[3], UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"   
+                                    Tag="On-line детектор 4"/>
+                    </StackPanel>
+                </UniformGrid>
+
+                <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                    <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Text="Коэффицент K: " />
+
+                    <TextBox
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.K, UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"/>
+                </UniformGrid>
+
+                <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                    <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"        
+                                    Text="±: " />
+
+                    <TextBox
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.Error, UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap" />
+                </UniformGrid>
+
+                <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                    <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Text="Неоднородность по левой: " />
+
+                    <TextBox
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.LeftHeterogeneity, UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap"/>
+                </UniformGrid>
+
+                <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                    <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"        
+                                    Text="Неоднородность по правой: " />
+
+                    <TextBox
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseTextBox}"
+                                    Text="{Binding SessionData.RightHeterogeneity, UpdateSourceTrigger=PropertyChanged}"
+                                    TextWrapping="Wrap" />
+                </UniformGrid>
+
+                <Button Content="Сохранить изменения" Padding="5" Margin="0 10 0 0"/>
+
+            </StackPanel>
+        </ScrollViewer>
         
     </Grid>
 </Window>

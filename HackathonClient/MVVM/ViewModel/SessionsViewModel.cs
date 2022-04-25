@@ -1,4 +1,5 @@
 ﻿using HackathonClient.Core;
+using HackathonClient.MVVM.View;
 using SharedLibrary;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,26 @@ namespace HackathonClient.MVVM.ViewModel
         private ObservableCollection<SessionData> _sessions;
         private ICollectionView _sessionsView;
         private SessionData _selectedSesseion;
+        private bool _isSelected; 
         public RelayCommand Sort { get; set; }
-
+        public RelayCommand EditSession { get; set; }
+        
+        public bool IsSelected { 
+            get 
+            { 
+                return _isSelected; 
+            }
+            set
+            {
+                _isSelected = value;
+                OnPropertyChanged();
+            }
+        }
         public ObservableCollection<SessionData> Sessions
         {
             get { return _sessions; }
-            set 
-            { 
+            set
+            {
                 _sessions = value;
                 OnPropertyChanged();
             }
@@ -43,6 +57,7 @@ namespace HackathonClient.MVVM.ViewModel
             set
             {
                 _selectedSesseion = value;
+                IsSelected = true;
                 OnPropertyChanged();
             }
         }
@@ -175,6 +190,7 @@ namespace HackathonClient.MVVM.ViewModel
             };
             #endregion
 
+            IsSelected = false;
             SessionsView = CollectionViewSource.GetDefaultView(Sessions);
 
             #region Commands
@@ -182,13 +198,25 @@ namespace HackathonClient.MVVM.ViewModel
             {
                 if (SessionsView.SortDescriptions.Count > 0)
                 {
-                    SessionsView.SortDescriptions.Clear();         
+                    SessionsView.SortDescriptions.Clear();
                 }
                 else
                 {
                     SessionsView.SortDescriptions.Add(new SortDescription("Id", ListSortDirection.Descending));
                 }
             });
+
+            EditSession = new RelayCommand(o =>
+            {
+                var window = new EditSessionView();
+                var vm = new EditSessionViewModel
+                {
+                    SessionData = SelectedSesseion
+                };
+                window.DataContext = vm;
+                window.ShowDialog();
+            });
+
             #endregion
         }
 
