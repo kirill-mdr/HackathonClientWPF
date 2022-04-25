@@ -89,7 +89,7 @@ namespace HackathonClient.MVVM.ViewModel
             {
                 new SessionData
                 {
-                    Id = 4,
+                    SessionNumber = 4,
                     Organization = "ВВлдавы",
                     Agent = new Agent { Ion = "sfd"},
                     Timing = new SessionTiming {
@@ -99,7 +99,7 @@ namespace HackathonClient.MVVM.ViewModel
                 },
                 new SessionData
                 {
-                    Id = 5,
+                    SessionNumber = 5,
                     Organization = "fasdasf",
                     Agent = new Agent { Ion = "Ion"},
                     Timing = new SessionTiming {
@@ -109,7 +109,7 @@ namespace HackathonClient.MVVM.ViewModel
                 },
                 new SessionData
                 {
-                    Id = 3,
+                    SessionNumber = 3,
                     Organization = "fasdasf",
                     Agent = new Agent { Ion = "Ion"},
                     Timing = new SessionTiming {
@@ -119,7 +119,7 @@ namespace HackathonClient.MVVM.ViewModel
                 },
                 new SessionData
                 {
-                    Id = 1,
+                    SessionNumber = 1,
                     Organization = "fasdasf",
                     Agent = new Agent { Ion = "Ion"},
                     Timing = new SessionTiming {
@@ -129,7 +129,7 @@ namespace HackathonClient.MVVM.ViewModel
                 },
                 new SessionData
                 {
-                    Id = 2,
+                    SessionNumber = 2,
                     Organization = "fasdasf",
                     Agent = new Agent { Ion = "Ion"},
                     Timing = new SessionTiming {
@@ -139,7 +139,7 @@ namespace HackathonClient.MVVM.ViewModel
                 },
                 new SessionData
                 {
-                    Id = 6,
+                    SessionNumber = 6,
                     Organization = "fasdasf",
                     Agent = new Agent { Ion = "Ion"},
                     Timing = new SessionTiming {
@@ -149,7 +149,7 @@ namespace HackathonClient.MVVM.ViewModel
                 },
                 new SessionData
                 {
-                    Id = 7,
+                    SessionNumber = 7,
                     Organization = "fasdasf",
                     Agent = new Agent { Ion = "Ion"},
                     Timing = new SessionTiming {
@@ -159,7 +159,7 @@ namespace HackathonClient.MVVM.ViewModel
                 },
                 new SessionData
                 {
-                    Id = 8,
+                    SessionNumber = 8,
                     Organization = "fasdasf",
                     Agent = new Agent { Ion = "Ion"},
                     Timing = new SessionTiming {
@@ -169,7 +169,7 @@ namespace HackathonClient.MVVM.ViewModel
                 },
                 new SessionData
                 {
-                    Id = 9,
+                    SessionNumber = 9,
                     Organization = "fasdasf",
                     Agent = new Agent { Ion = "Ion"},
                     Timing = new SessionTiming {
@@ -179,7 +179,7 @@ namespace HackathonClient.MVVM.ViewModel
                 },
                 new SessionData
                 {
-                    Id = 10,
+                    SessionNumber = 10,
                     Organization = "fasdasf",
                     Agent = new Agent { Ion = "Ion"},
                     Timing = new SessionTiming {

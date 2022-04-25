@@ -43,7 +43,7 @@
                 <DataTemplate>
                     <Border BorderBrush="DarkGray" BorderThickness="0 0 0 1">
                         <StackPanel Margin="10">
-                            <TextBlock FontWeight="Bold" Text="{Binding Id, StringFormat='Номер: {0} '}" FontSize="16" Grid.Column="0"/>
+                            <TextBlock FontWeight="Bold" Text="{Binding SessionNumber, StringFormat='Номер: {0} '}" FontSize="16" Grid.Column="0"/>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition MinWidth="200"/>
