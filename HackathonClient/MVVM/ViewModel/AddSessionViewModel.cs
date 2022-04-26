@@ -9,19 +9,22 @@ using System.Windows;
 
 namespace HackathonClient.MVVM.ViewModel
 {
-    class EditSessionViewModel : ObservableObject
+    class AddSessionViewModel : ObservableObject
     {
         private SessionData _sessionData;
-        public SessionData SessionData { 
-            get 
+        public SessionData SessionData
+        {
+            get
             {
-                return _sessionData; 
-            } set 
-            { 
+                return _sessionData;
+            }
+            set
+            {
                 _sessionData = value;
                 OnPropertyChanged();
-            } 
+            }
         }
+
         #region Commands
         private RelayCommand _saveCommand;
         public RelayCommand SaveCommand
@@ -36,15 +39,17 @@ namespace HackathonClient.MVVM.ViewModel
                         {
                             w.DialogResult = true;
                             w.Close();
-
+                            
                         }
                     }));
             }
         }
         #endregion
-        public EditSessionViewModel()
+        public AddSessionViewModel()
         {
 
         }
     }
+
+
 }

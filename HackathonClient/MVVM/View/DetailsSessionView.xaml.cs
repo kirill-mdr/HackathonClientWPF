@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace HackathonClient.MVVM.View
 {
     /// <summary>
-    /// Логика взаимодействия для EditSessionView.xaml
+    /// Логика взаимодействия для DetailsSessionView.xaml
     /// </summary>
-    public partial class EditSessionView : Window
+    public partial class DetailsSessionView : Window
     {
-        public EditSessionView()
+        public DetailsSessionView()
         {
             InitializeComponent();
         }
@@ -35,5 +35,4 @@ namespace HackathonClient.MVVM.View
             this.Close();
         }
     }
-    
 }

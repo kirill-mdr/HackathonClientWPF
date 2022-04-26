@@ -10,19 +10,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace HackathonClient.MVVM.View
 {
     /// <summary>
-    /// Логика взаимодействия для ReportView.xaml
+    /// Логика взаимодействия для AddSessionView.xaml
     /// </summary>
-    public partial class ReportView : UserControl
+    public partial class AddSessionView : Window
     {
-        public ReportView()
+        public AddSessionView()
         {
             InitializeComponent();
+        }
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+        private void ButtonClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -1,15 +1,14 @@
-﻿<Window x:Class="HackathonClient.MVVM.View.EditSessionView"
+﻿<Window x:Class="HackathonClient.MVVM.View.AddSessionView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HackathonClient.MVVM.View" xmlns:viewmodel="clr-namespace:HackathonClient.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:EditSessionViewModel}"
+        xmlns:local="clr-namespace:HackathonClient.MVVM.View" xmlns:viewmodel="clr-namespace:HackathonClient.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AddSessionViewModel}"
         mc:Ignorable="d"
-        Title="EditSessionView" Height="800" Width="600"
+        Title="AddSessionView" Height="800" Width="600"
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip">
-
     <Border BorderThickness="1" BorderBrush="{StaticResource DarkBrush}">
         <Grid>
             <Grid.RowDefinitions>
@@ -35,21 +34,7 @@
             </Border>
             <ScrollViewer Grid.Row="1">
                 <StackPanel HorizontalAlignment="Center" Margin="0 20 0 20">
-                    <TextBlock HorizontalAlignment="Left" Grid.Column="0" Text="Редактирование сеанса" VerticalAlignment="Center" FontSize="28" Margin="10,0,0,10" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Height="38"/>
-                    <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
-                        <TextBlock
-                                    Margin="10"
-                                    VerticalAlignment="Center"
-                                    Text="Номер сеанса: " />
-
-                        <TextBox
-                                    Margin="10"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.SessionNumber, UpdateSourceTrigger=PropertyChanged}"
-                                    TextWrapping="Wrap"
-                                    IsReadOnly="True"/>
-                    </UniformGrid>
+                    <TextBlock HorizontalAlignment="Left" Grid.Column="0" Text="Добавление сеанса" VerticalAlignment="Center" FontSize="28" Margin="10,0,0,10" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Height="38"/>
 
                     <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
                         <TextBlock
@@ -351,69 +336,11 @@
                         </StackPanel>
                     </UniformGrid>
 
-                    <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
-                        <TextBlock
-                                    Margin="10"
-                                    VerticalAlignment="Center"
-                                    Text="Коэффицент K: " />
 
-                        <TextBox
-                                    Margin="10"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.K, UpdateSourceTrigger=PropertyChanged}"
-                                    TextWrapping="Wrap" 
-                                    IsReadOnly="True"/>
-                    </UniformGrid>
-
-                    <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
-                        <TextBlock
-                                    Margin="10"
-                                    VerticalAlignment="Center"        
-                                    Text="±: " />
-
-                        <TextBox
-                                    Margin="10"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.Error, UpdateSourceTrigger=PropertyChanged}"
-                                    TextWrapping="Wrap"  
-                                    IsReadOnly="True"/>
-                    </UniformGrid>
-
-                    <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
-                        <TextBlock
-                                    Margin="10"
-                                    VerticalAlignment="Center"
-                                    Text="Неоднородность по левой: " />
-
-                        <TextBox
-                                    Margin="10"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.LeftHeterogeneity, UpdateSourceTrigger=PropertyChanged}"
-                                    TextWrapping="Wrap" 
-                                    IsReadOnly="True"/>
-                    </UniformGrid>
-
-                    <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
-                        <TextBlock
-                                    Margin="10"
-                                    VerticalAlignment="Center"        
-                                    Text="Неоднородность по правой: " />
-
-                        <TextBox
-                                    Margin="10"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.RightHeterogeneity, UpdateSourceTrigger=PropertyChanged}"
-                                    TextWrapping="Wrap" 
-                                    IsReadOnly="True"/>
-                    </UniformGrid>
                     <Button
                             Command="{Binding SaveCommand}"
                             CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                            Content="Сохранить изменения"
+                            Content="Добавить сеанс"
                             BorderThickness="1"
                             Foreground="{StaticResource DarkBrush}"
                             FontSize="24"
@@ -423,7 +350,7 @@
 
                 </StackPanel>
             </ScrollViewer>
-
         </Grid>
     </Border>
+    
 </Window>

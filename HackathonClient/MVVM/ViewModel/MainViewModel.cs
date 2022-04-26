@@ -20,34 +20,33 @@ namespace HackathonClient.MVVM.ViewModel
             }
         }
         //views
-        public HomeViewModel HomeVM { get; set; }
         public SessionsViewModel SessionsVM { get; set; }
-        public ReportViewModel ReportVM { get; set; }
+
         //commands
-        public RelayCommand HomeViewCommand { get; set; }
-        public RelayCommand SessionsViewCommand { get; set; }
-        public RelayCommand ReportViewCommand { get; set; }
+        #region Commands
+        private RelayCommand _sessionsViewCommand;
+        public RelayCommand SessionsViewCommand
+        {
+            get
+            {
+                return _sessionsViewCommand ??
+                    (_sessionsViewCommand = new RelayCommand(obj =>
+                    {
+                        CurrentView = SessionsVM;
+                    }));
+            }
+        }
+
+
+
+        #endregion
+
 
         public MainViewModel()
         {
-            HomeVM = new HomeViewModel();
             SessionsVM = new SessionsViewModel();
-            ReportVM = new ReportViewModel();
 
-            CurrentView = HomeVM;
-
-            HomeViewCommand = new RelayCommand(o =>
-            {
-                CurrentView = HomeVM;
-            });
-            SessionsViewCommand = new RelayCommand(o =>
-            {
-                CurrentView = SessionsVM;
-            });
-            ReportViewCommand = new RelayCommand(o =>
-            {
-                CurrentView = ReportVM;
-            });
+            CurrentView = SessionsVM;
 
         }
     }

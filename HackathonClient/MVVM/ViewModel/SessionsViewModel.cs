@@ -17,21 +17,7 @@ namespace HackathonClient.MVVM.ViewModel
         private ObservableCollection<SessionData> _sessions;
         private ICollectionView _sessionsView;
         private SessionData _selectedSesseion;
-        private bool _isSelected; 
-        public RelayCommand Sort { get; set; }
-        public RelayCommand EditSession { get; set; }
-        
-        public bool IsSelected { 
-            get 
-            { 
-                return _isSelected; 
-            }
-            set
-            {
-                _isSelected = value;
-                OnPropertyChanged();
-            }
-        }
+
         public ObservableCollection<SessionData> Sessions
         {
             get { return _sessions; }
@@ -57,7 +43,6 @@ namespace HackathonClient.MVVM.ViewModel
             set
             {
                 _selectedSesseion = value;
-                IsSelected = true;
                 OnPropertyChanged();
             }
         }
@@ -72,7 +57,7 @@ namespace HackathonClient.MVVM.ViewModel
                 {
                     if (obj is SessionData ses)
                     {
-                        return ses.Id.ToString().Contains(SearchText);
+                        return ses.SessionNumber.ToString().Contains(SearchText);
                     }
 
                     return false;
@@ -81,6 +66,135 @@ namespace HackathonClient.MVVM.ViewModel
 
             }
         }
+
+        #region Commands
+        private RelayCommand _sortCommand;
+        private RelayCommand _editSessionCommand;
+        private RelayCommand _detailsSessionCommand;
+        private RelayCommand _addSessionCommand;
+        private RelayCommand _reportSessionCommand;
+
+        public RelayCommand ReportSessionCommand
+        {
+            get
+            {
+                return _reportSessionCommand ??
+                    (_reportSessionCommand = new RelayCommand(obj =>
+                    {
+                        var window = new ReportSessionView();
+                        var vm = new ReportSessionViewModel();
+                        if (SelectedSesseion != null)
+                        {
+                            vm = new ReportSessionViewModel
+                            {
+                                StartNumber = SelectedSesseion.SessionNumber
+                            };
+                        }
+                        window.DataContext = vm;
+                        if (window.ShowDialog() == true)
+                        {
+                            //Отправка данных на сервер
+                        }
+                    }));
+            }
+        }
+        public RelayCommand AddSessionCommand
+        {
+            get
+            {
+                return _addSessionCommand ??
+                    (_addSessionCommand = new RelayCommand(obj =>
+                    {
+                        SessionData temp = new SessionData
+                        {
+                            ObjectID = new string[4],
+                            TrackDetectors = new float?[9],
+                            OnlineDetectors = new float?[4]
+                        };
+                        var window = new AddSessionView();
+                        var vm = new AddSessionViewModel
+                        {
+                            SessionData = temp
+                        };
+                        window.DataContext = vm;
+                        if (window.ShowDialog() == true)
+                        {
+                            //Отправка данных на сервер
+                            Sessions.Add(vm.SessionData);
+                            SelectedSesseion = Sessions.Last();
+                            
+                        }
+                    }));
+            }
+        }
+        public RelayCommand DetailsSessionCommand
+        {
+            get
+            {
+                return _detailsSessionCommand ??
+                (_detailsSessionCommand = new RelayCommand(obj =>
+                {
+                    SessionData sess = obj as SessionData;
+                    if (sess != null)
+                    {
+                        var window = new DetailsSessionView();
+                        var vm = new DetailsSessionViewModel
+                        {
+                            SessionData = SelectedSesseion
+                        };
+                        window.DataContext = vm;
+                        window.ShowDialog();
+                    }
+                },
+            (obj) => obj != null));
+            }
+        }
+        public RelayCommand EditSessionCommand
+        {
+            get
+            {
+                return _editSessionCommand ??
+                (_editSessionCommand = new RelayCommand(obj =>
+                {
+                    SessionData sess = obj as SessionData;
+                    if (sess != null)
+                    {
+                        var window = new EditSessionView();
+                        var vm = new EditSessionViewModel
+                        {
+                            SessionData = SelectedSesseion
+                        };
+                        window.DataContext = vm;
+                        if (window.ShowDialog() == true)
+                        {
+                            //Отправка объекта на сервер
+                        }
+                    }
+                },
+            (obj) => obj != null));
+            }
+        }
+        public RelayCommand SortCommand
+        {
+            get
+            {
+                return _sortCommand ??
+                    (_sortCommand = new RelayCommand(obj =>
+                    {
+                        if (SessionsView.SortDescriptions.Count > 0)
+                        {
+                            SessionsView.SortDescriptions.Clear();
+                        }
+                        else
+                        {
+                            SessionsView.SortDescriptions.Add(new SortDescription("SessionNumber", ListSortDirection.Descending));
+                        }
+                    }));
+            }
+        }
+
+
+        #endregion
         public SessionsViewModel()
         {
             #region Adds
@@ -95,7 +209,11 @@ namespace HackathonClient.MVVM.ViewModel
                     Timing = new SessionTiming {
                     StartTime = date1,
                     EndTime = DateTime.Now
-                    }
+                    },
+                    ObjectID = new string[4],
+                    TrackDetectors = new float?[9],
+                    OnlineDetectors = new float?[4]
+
                 },
                 new SessionData
                 {
@@ -105,7 +223,10 @@ namespace HackathonClient.MVVM.ViewModel
                     Timing = new SessionTiming {
                     StartTime = date1,
                     EndTime = DateTime.Now
-                    }
+                    },
+                    ObjectID = new string[4],
+                    TrackDetectors = new float?[9],
+                    OnlineDetectors = new float?[4]
                 },
                 new SessionData
                 {
@@ -115,7 +236,10 @@ namespace HackathonClient.MVVM.ViewModel
                     Timing = new SessionTiming {
                     StartTime = date1,
                     EndTime = DateTime.Now
-                    }
+                    },
+                    ObjectID = new string[4],
+                    TrackDetectors = new float?[9],
+                    OnlineDetectors = new float?[4]
                 },
                 new SessionData
                 {
@@ -125,7 +249,10 @@ namespace HackathonClient.MVVM.ViewModel
                     Timing = new SessionTiming {
                     StartTime = date1,
                     EndTime = DateTime.Now
-                    }
+                    },
+                    ObjectID = new string[4],
+                    TrackDetectors = new float?[9],
+                    OnlineDetectors = new float?[4]
                 },
                 new SessionData
                 {
@@ -135,7 +262,10 @@ namespace HackathonClient.MVVM.ViewModel
                     Timing = new SessionTiming {
                     StartTime = date1,
                     EndTime = DateTime.Now
-                    }
+                    },
+                    ObjectID = new string[4],
+                    TrackDetectors = new float?[9],
+                    OnlineDetectors = new float?[4]
                 },
                 new SessionData
                 {
@@ -145,7 +275,10 @@ namespace HackathonClient.MVVM.ViewModel
                     Timing = new SessionTiming {
                     StartTime = date1,
                     EndTime = DateTime.Now
-                    }
+                    },
+                    ObjectID = new string[4],
+                    TrackDetectors = new float?[9],
+                    OnlineDetectors = new float?[4]
                 },
                 new SessionData
                 {
@@ -155,7 +288,10 @@ namespace HackathonClient.MVVM.ViewModel
                     Timing = new SessionTiming {
                     StartTime = date1,
                     EndTime = DateTime.Now
-                    }
+                    },
+                    ObjectID = new string[4],
+                    TrackDetectors = new float?[9],
+                    OnlineDetectors = new float?[4]
                 },
                 new SessionData
                 {
@@ -165,7 +301,10 @@ namespace HackathonClient.MVVM.ViewModel
                     Timing = new SessionTiming {
                     StartTime = date1,
                     EndTime = DateTime.Now
-                    }
+                    },
+                    ObjectID = new string[4],
+                    TrackDetectors = new float?[9],
+                    OnlineDetectors = new float?[4]
                 },
                 new SessionData
                 {
@@ -175,7 +314,10 @@ namespace HackathonClient.MVVM.ViewModel
                     Timing = new SessionTiming {
                     StartTime = date1,
                     EndTime = DateTime.Now
-                    }
+                    },
+                    ObjectID = new string[4],
+                    TrackDetectors = new float?[9],
+                    OnlineDetectors = new float?[4]
                 },
                 new SessionData
                 {
@@ -185,39 +327,17 @@ namespace HackathonClient.MVVM.ViewModel
                     Timing = new SessionTiming {
                     StartTime = date1,
                     EndTime = DateTime.Now
-                    }
+                    },
+                    ObjectID = new string[4],
+                    TrackDetectors = new float?[9],
+                    OnlineDetectors = new float?[4]
                 },
             };
             #endregion
 
-            IsSelected = false;
+            //IsSelected = false;
             SessionsView = CollectionViewSource.GetDefaultView(Sessions);
 
-            #region Commands
-            Sort = new RelayCommand(o =>
-            {
-                if (SessionsView.SortDescriptions.Count > 0)
-                {
-                    SessionsView.SortDescriptions.Clear();
-                }
-                else
-                {
-                    SessionsView.SortDescriptions.Add(new SortDescription("Id", ListSortDirection.Descending));
-                }
-            });
-
-            EditSession = new RelayCommand(o =>
-            {
-                var window = new EditSessionView();
-                var vm = new EditSessionViewModel
-                {
-                    SessionData = SelectedSesseion
-                };
-                window.DataContext = vm;
-                window.ShowDialog();
-            });
-
-            #endregion
         }
 
     }

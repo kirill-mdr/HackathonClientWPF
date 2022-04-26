@@ -6,59 +6,64 @@
         xmlns:local="clr-namespace:HackathonClient"
         xmlns:viewModel="clr-namespace:HackathonClient.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1000">
+        Title="MainWindow" Height="700" Width="1000"
+        Background="{StaticResource LightBrush}"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip"
+        >
 
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
-    <Grid Background="#EEEEEE">
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="75"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Image Source="/Images/logo.png" Grid.Column="0" Grid.Row="0"></Image>
+        <Border Grid.Row="0" Grid.Column="0" Background="{StaticResource DarkBrush}"
+                MouseDown="Border_MouseDown">
+            <Grid HorizontalAlignment="Stretch">
+                <Image Source="/Images/logoText.png" HorizontalAlignment="Left" Margin="10 7 0 5"/>
+                <StackPanel HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <Button Width="30" Height="30"
+                            Content="—"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="{StaticResource DarkDarkBrush}"
+                            FontWeight="Medium"
+                            Click="ButtonMinimize_Click"
+                            />
+                    <Button Width="30" Height="30"
+                            Content="☐"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="{StaticResource DarkDarkBrush}"
+                            FontWeight="Bold"
+                            Click="ButtonMaximize_Click"/>
+                    <Button Width="30" Height="30"
+                            Content="✕"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="{StaticResource DarkDarkBrush}"
+                            FontWeight="Bold"
+                            Click="ButtonClose_Click"/>
+                </StackPanel>
 
-        <StackPanel Grid.Column="0" Grid.Row="1">
-            <RadioButton Content="Главная"
-                         Height="50"
-                         Foreground="Black"
-                         FontSize="18"
-                         Style="{StaticResource MenuButtonTheme}"
-                         IsChecked="True"
-                         Command="{Binding HomeViewCommand}"/>
-            <RadioButton Content="Сеансы"
-                         Height="50"
-                         Foreground="Black"
-                         FontSize="18"
-                         Style="{StaticResource MenuButtonTheme}"
-                         Command="{Binding SessionsViewCommand}"/>
-            <RadioButton Content="Переходы"
-                         Height="50"
-                         Foreground="Black"
-                         FontSize="18"
-                         Style="{StaticResource MenuButtonTheme}"/>
-            <RadioButton Content="Проверка неоднородности"
-                         Height="50"
-                         Foreground="Black"
-                         FontSize="18"
-                         Style="{StaticResource MenuButtonTheme}"/>
-            <RadioButton Content="Составление отчетов"
-                         Height="50"
-                         Foreground="Black"
-                         FontSize="18"
-                         Style="{StaticResource MenuButtonTheme}"
-                         Command="{Binding ReportViewCommand}"/>
-        </StackPanel>
+            </Grid>
+        </Border>
 
         <ContentControl 
-                        Grid.Column="1" 
-                        Margin="10,5,10,5"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Margin="0,5,0,0"
                         Content="{Binding CurrentView}" Grid.RowSpan="2"/>
     </Grid>
 </Window>

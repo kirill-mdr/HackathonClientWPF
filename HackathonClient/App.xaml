@@ -14,14 +14,8 @@
                 <ResourceDictionary Source="Theme/Colors.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-                <view:HomeView/>
-            </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:SessionsViewModel}">
                 <view:SessionsView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:ReportViewModel}">
-                <view:ReportView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

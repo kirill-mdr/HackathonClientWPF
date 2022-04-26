@@ -16,7 +16,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Left" Grid.Column="0" Text="Сеансы" VerticalAlignment="Center" FontSize="28" Margin="10,0,0,0" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Height="38" Width="95"/>
+        <TextBlock HorizontalAlignment="Left" Grid.Column="0" Text="Список сеансов" VerticalAlignment="Center" FontSize="28" Margin="10,0,0,0" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Height="38"/>
         <DockPanel Margin="0,10,0,10" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right">
             <ContentControl
                             Height="33"  
@@ -28,10 +28,15 @@
                             Tag="Введите номер сеанса...."
                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Width="173" />
             <Button
-                        Command="{Binding Sort}"
-                        Content="Сортировка"
-                        Margin="10 0 10 0"
-                        Padding="5 0 5 0"/>
+                        Command="{Binding SortCommand}"
+                        FontFamily="Segoe MDL2 Assets" Content="&#xE8CB;"
+                        BorderThickness="0"
+                        Width="30"
+                        Foreground="{StaticResource DarkDarkBrush}"
+                        FontSize="20"
+                        Background="Transparent"
+                        Margin="5 0 5 0"
+                        />
         </DockPanel>
 
         <ListBox ItemsSource="{Binding SessionsView}" 
@@ -55,8 +60,8 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="{Binding Organization, StringFormat='Организация: {0} '}" FontSize="16" Grid.Column="0" Grid.Row="0"/>
                                 <TextBlock Text="{Binding Agent.Ion, StringFormat='Код среды: {0} '}" FontSize="16" Grid.Column="1" Grid.Row="0"/>
-                                <TextBlock Text="{Binding Timing.StartTime, StringFormat='Начало: {0:G} '}" FontSize="16" Grid.Column="0" Grid.Row="1"/>
-                                <TextBlock Text="{Binding Timing.EndTime, StringFormat='Окончание: {0:G} '}" FontSize="16" Grid.Column="1" Grid.Row="1"/>
+                                <TextBlock Text="{Binding Timing.StartTime, StringFormat='Начало: {0:dd.MM.yyyy H:mm:ss} '}" FontSize="16" Grid.Column="0" Grid.Row="1"/>
+                                <TextBlock Text="{Binding Timing.EndTime, StringFormat='Окончание: {0:dd.MM.yyyy H:mm:ss} '}" FontSize="16" Grid.Column="1" Grid.Row="1"/>
                             </Grid>
                             <Grid Margin="0 3 0 0">
                                 <Grid.ColumnDefinitions>
@@ -70,15 +75,51 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-            <Button
-                        Command="{Binding EditSession}"
-                        Content="Редактирование сеанса"
-                        Margin="0 10 10 5"
-                        Padding="5 0 5 0"
-                        IsEnabled="{Binding IsSelected}"/>
+        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource DarkBrush}" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button
+                            Command="{Binding AddSessionCommand}"
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE710;"
+                            BorderThickness="1"
+                            Width="50"
+                            Foreground="{StaticResource DarkBrush}"
+                            FontSize="24"
+                            Background="{StaticResource DarkDarkBrush}"
+                            />
+                <Button
+                            Command="{Binding EditSessionCommand}"
+                            CommandParameter="{Binding SelectedSesseion}"
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE70F;"
+                            BorderThickness="1"
+                            Width="50"
+                            Foreground="{StaticResource DarkBrush}"
+                            FontSize="24"
+                            Background="{StaticResource DarkDarkBrush}"
+                            />
+                <Button
+                            Command="{Binding DetailsSessionCommand}"
+                            CommandParameter="{Binding SelectedSesseion}"
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE712;"
+                            BorderThickness="1"
+                            Width="50"
+                            Foreground="{StaticResource DarkBrush}"
+                            FontSize="24"
+                            Background="{StaticResource DarkDarkBrush}"
+                            />
+                <Button
+                            Command="{Binding ReportSessionCommand}"
+                            FontFamily="Segoe MDL2 Assets" Content="&#xEA90;"
+                            BorderThickness="1"
+                            Width="50"
+                            Foreground="{StaticResource DarkBrush}"
+                            FontSize="24"
+                            Background="{StaticResource DarkDarkBrush}"
+                            />
+            
+            
 
-        </StackPanel>
+            </StackPanel>
+        </Border>
 
     </Grid>
 </UserControl>
