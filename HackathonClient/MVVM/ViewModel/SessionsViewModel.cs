@@ -107,7 +107,6 @@ namespace HackathonClient.MVVM.ViewModel
                         window.DataContext = vm;
                         if (window.ShowDialog() == true)
                         {
-                            //Отправка данных на сервер
                         }
                     }));
             }
@@ -144,7 +143,7 @@ namespace HackathonClient.MVVM.ViewModel
                         {
                             SessionData = temp
                         };
-                        if ( Sessions != null )
+                        if ( Sessions.Count > 0 )
                         {
                             vm.SessionData.SessionNumber = Sessions.Last().SessionNumber + 1;
                         }
@@ -199,6 +198,16 @@ namespace HackathonClient.MVVM.ViewModel
                         window.DataContext = vm;
                         if (window.ShowDialog() == true)
                         {
+                            if (vm.SessionData.Timing.EndTime == null) vm.SessionData.Timing.EndTime = "";
+                            if (vm.SessionData.Timing.StartTime == null) vm.SessionData.Timing.StartTime = "";
+                            if (vm.SessionData.Timing.IrradiationDuration == null) vm.SessionData.Timing.IrradiationDuration = "";
+                            if (vm.SessionData.Indicators.ReadTime == null) vm.SessionData.Indicators.ReadTime = "";
+                            if (vm.SessionData.Agent.Ion == null) vm.SessionData.Agent.Ion = "";
+                            if (vm.SessionData.Agent.Isotope == null) vm.SessionData.Agent.Isotope = "";
+                            if (vm.SessionData.Agent.EnvironmentId == null) vm.SessionData.Agent.EnvironmentId = "";
+                            if (vm.SessionData.Agent.IsotopeEnvironment == null) vm.SessionData.Agent.IsotopeEnvironment = "";
+
+
                             AddAsync(vm.SessionData);
                         }
                     }
@@ -308,7 +317,6 @@ namespace HackathonClient.MVVM.ViewModel
             //};
             #endregion
 
-            //IsSelected = false;
             Sessions = new ObservableCollection<SessionData>();
             RefreshAsync();
             SessionsView = CollectionViewSource.GetDefaultView(Sessions);
