@@ -1,8 +1,10 @@
 ﻿using HackathonClient.Core;
+using Newtonsoft.Json;
 using SharedLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -47,7 +49,6 @@ namespace HackathonClient.MVVM.ViewModel
         #endregion
         public AddSessionViewModel()
         {
-
         }
     }
 

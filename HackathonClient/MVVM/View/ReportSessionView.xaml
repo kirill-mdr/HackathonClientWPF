@@ -90,6 +90,7 @@
                     FontSize="24"
                     Background="{StaticResource DarkDarkBrush}"
                     Margin="0 30 0 20"
+                    Height="55"
                     />
 
             </StackPanel>

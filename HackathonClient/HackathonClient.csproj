@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="Images\iconSvg.svg" />
     <None Remove="Images\logo.png" />
+    <None Remove="Images\logoDark.png" />
     <None Remove="Images\logoMini.png" />
     <None Remove="Images\logoText.png" />
   </ItemGroup>
@@ -20,12 +21,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SharedLib\SharedLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Images\iconSvg.svg" />
     <Resource Include="Images\logo.png" />
+    <Resource Include="Images\logoDark.png" />
     <Resource Include="Images\logoMini.png" />
     <Resource Include="Images\logoText.png" />
   </ItemGroup>

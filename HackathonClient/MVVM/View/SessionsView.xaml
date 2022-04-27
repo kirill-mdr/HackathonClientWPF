@@ -8,15 +8,31 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="97*"/>
-            <ColumnDefinition Width="103*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*" />
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Left" Grid.Column="0" Text="Список сеансов" VerticalAlignment="Center" FontSize="28" Margin="10,0,0,0" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Height="38"/>
+        
+        <DockPanel Margin="0,10,0,10" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left">
+            <TextBlock HorizontalAlignment="Left" Grid.Column="0" Text="Список сеансов" VerticalAlignment="Center" FontSize="28" Margin="10,0,0,0" Foreground="{StaticResource DarkDarkBrush}" Height="38"/>
+            <Button
+                        Command="{Binding UpdateListCommand}"
+                        FontFamily="Segoe MDL2 Assets" Content="&#xE777;"
+                        BorderThickness="0"
+                        Width="30"
+                        Foreground="{StaticResource DarkDarkBrush}"
+                        FontSize="20"
+                        Background="Transparent"
+                        Margin="5 0 5 0"
+                        />
+        </DockPanel>
+        <DockPanel Margin="0,5,0,5" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Image Source="/Images/logoDark.png"/>
+        </DockPanel>
         <DockPanel Margin="0,10,0,10" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right">
             <ContentControl
                             Height="33"  
@@ -59,7 +75,7 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="{Binding Organization, StringFormat='Организация: {0} '}" FontSize="16" Grid.Column="0" Grid.Row="0"/>
-                                <TextBlock Text="{Binding Agent.Ion, StringFormat='Код среды: {0} '}" FontSize="16" Grid.Column="1" Grid.Row="0"/>
+                                <TextBlock Text="{Binding Agent.EnvironmentId, StringFormat='Код среды: {0} '}" FontSize="16" Grid.Column="1" Grid.Row="0"/>
                                 <TextBlock Text="{Binding Timing.StartTime, StringFormat='Начало: {0:dd.MM.yyyy H:mm:ss} '}" FontSize="16" Grid.Column="0" Grid.Row="1"/>
                                 <TextBlock Text="{Binding Timing.EndTime, StringFormat='Окончание: {0:dd.MM.yyyy H:mm:ss} '}" FontSize="16" Grid.Column="1" Grid.Row="1"/>
                             </Grid>

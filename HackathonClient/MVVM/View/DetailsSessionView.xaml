@@ -72,36 +72,12 @@
                                     Text="Объекты испытаний: " />
                         <StackPanel Orientation="Vertical">
                             <TextBox
-                                    Margin="10 10 10 0"
+                                    Margin="10 10 10 10"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.ObjectID[0], UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SessionData.Objects, UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap" 
-                                    Tag="Объект испытаний 1"
-                                    IsReadOnly="True"/>
-                            <TextBox
-                                    Margin="10 10 10 0"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.ObjectID[1], UpdateSourceTrigger=PropertyChanged}"
-                                    TextWrapping="Wrap" 
-                                    Tag="Объект испытаний 2"
-                                    IsReadOnly="True"/>
-                            <TextBox
-                                    Margin="10 10 10 0"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.ObjectID[2], UpdateSourceTrigger=PropertyChanged}"
-                                    TextWrapping="Wrap" 
-                                    Tag="Объект испытаний 3"
-                                    IsReadOnly="True"/>
-                            <TextBox
-                                    Margin="10"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.ObjectID[3], UpdateSourceTrigger=PropertyChanged}"
-                                    TextWrapping="Wrap" 
-                                    Tag="Объект испытаний 4"
+                                    Tag="Объекты испытаний через пробел"
                                     IsReadOnly="True"/>
                         </StackPanel>
                     </UniformGrid>
@@ -221,7 +197,7 @@
                                     Margin="10"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.Indicators.Pressure, UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SessionData.Indicators.Humidity, UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap"
                                     IsReadOnly="True"/>
                     </UniformGrid>
@@ -266,7 +242,7 @@
                                     Margin="10 10 10 0"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.TrackDetectors[0], UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SessionData.TD1, UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap" 
                                     Tag="Трековый детектор 1"
                                     IsReadOnly="True"/>
@@ -274,14 +250,14 @@
                                     Margin="10 10 10 0"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.TrackDetectors[1], UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SessionData.TD2, UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap"  
                                     Tag="Трековый детектор 2"/>
                             <TextBox
                                     Margin="10 10 10 0"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.TrackDetectors[3], UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SessionData.TD3, UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap"  
                                     Tag="Трековый детектор 3"
                                     IsReadOnly="True"/>
@@ -289,7 +265,7 @@
                                     Margin="10 10 10 0"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.TrackDetectors[4], UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SessionData.TD4, UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap"  
                                     Tag="Трековый детектор 4"
                                     IsReadOnly="True"/>
@@ -297,7 +273,7 @@
                                     Margin="10 10 10 0"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.TrackDetectors[5], UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SessionData.TD5, UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap"  
                                     Tag="Трековый детектор 5"
                                     IsReadOnly="True"/>
@@ -305,7 +281,7 @@
                                     Margin="10 10 10 0"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.TrackDetectors[6], UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SessionData.TD6, UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap"  
                                     Tag="Трековый детектор 6"
                                     IsReadOnly="True"/>
@@ -313,7 +289,7 @@
                                     Margin="10 10 10 0"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.TrackDetectors[7], UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SessionData.TD7, UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap"  
                                     Tag="Трековый детектор 7"
                                     IsReadOnly="True"/>
@@ -321,7 +297,7 @@
                                     Margin="10 10 10 0"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.TrackDetectors[8], UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SessionData.TD8, UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap"  
                                     Tag="Трековый детектор 8"
                                     IsReadOnly="True"/>
@@ -329,7 +305,7 @@
                                     Margin="10"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.TrackDetectors[9], UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SessionData.TD9, UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap"  
                                     Tag="Трековый детектор 9"
                                     IsReadOnly="True"/>
@@ -346,7 +322,7 @@
                                     Margin="10 10 10 0"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.OnlineDetectors[0], UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SessionData.OD1, UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap"  
                                     Tag="On-line детектор 1"
                                     IsReadOnly="True"/>
@@ -354,7 +330,7 @@
                                     Margin="10 10 10 0"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.OnlineDetectors[1], UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SessionData.OD2, UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap"   
                                     Tag="On-line детектор 2"
                                     IsReadOnly="True"/>
@@ -362,7 +338,7 @@
                                     Margin="10 10 10 0"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.OnlineDetectors[2], UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SessionData.OD3, UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap"   
                                     Tag="On-line детектор 3"
                                     IsReadOnly="True"/>
@@ -370,7 +346,7 @@
                                     Margin="10"
                                     VerticalAlignment="Center"
                                     Style="{StaticResource BaseTextBox}"
-                                    Text="{Binding SessionData.OnlineDetectors[3], UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding SessionData.OD4, UpdateSourceTrigger=PropertyChanged}"
                                     TextWrapping="Wrap"   
                                     Tag="On-line детектор 4"
                                     IsReadOnly="True"/>

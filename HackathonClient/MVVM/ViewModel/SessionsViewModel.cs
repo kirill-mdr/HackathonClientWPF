@@ -1,11 +1,13 @@
 ﻿using HackathonClient.Core;
 using HackathonClient.MVVM.View;
+using Newtonsoft.Json;
 using SharedLibrary;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
@@ -73,7 +75,19 @@ namespace HackathonClient.MVVM.ViewModel
         private RelayCommand _detailsSessionCommand;
         private RelayCommand _addSessionCommand;
         private RelayCommand _reportSessionCommand;
+        private RelayCommand _updateListCommand;
 
+        public RelayCommand UpdateListCommand
+        {
+            get
+            {
+                return _updateListCommand ??
+                    (_updateListCommand = new RelayCommand(obj =>
+                    {
+                        RefreshAsync();
+                    }));
+            }
+        }
         public RelayCommand ReportSessionCommand
         {
             get
@@ -107,19 +121,37 @@ namespace HackathonClient.MVVM.ViewModel
                     {
                         SessionData temp = new SessionData
                         {
-                            ObjectID = new string[4],
-                            TrackDetectors = new float?[9],
-                            OnlineDetectors = new float?[4]
+                            Timing = new SessionTiming 
+                            { 
+                                EndTime = "",
+                                StartTime = "",
+                                IrradiationDuration = ""
+                            },
+                            Agent = new Agent
+                            {
+                                Ion = "",
+                                Isotope = "",
+                                EnvironmentId = "",
+                                IsotopeEnvironment = ""
+                            },
+                            Indicators = new EnvironmentIndicators 
+                            { 
+                                ReadTime = ""
+                            }
                         };
                         var window = new AddSessionView();
                         var vm = new AddSessionViewModel
                         {
                             SessionData = temp
                         };
+                        if ( Sessions != null )
+                        {
+                            vm.SessionData.SessionNumber = Sessions.Last().SessionNumber + 1;
+                        }
                         window.DataContext = vm;
                         if (window.ShowDialog() == true)
                         {
-                            //Отправка данных на сервер
+                            AddAsync(vm.SessionData);
                             Sessions.Add(vm.SessionData);
                             SelectedSesseion = Sessions.Last();
                             
@@ -167,7 +199,7 @@ namespace HackathonClient.MVVM.ViewModel
                         window.DataContext = vm;
                         if (window.ShowDialog() == true)
                         {
-                            //Отправка объекта на сервер
+                            AddAsync(vm.SessionData);
                         }
                     }
                 },
@@ -198,146 +230,119 @@ namespace HackathonClient.MVVM.ViewModel
         public SessionsViewModel()
         {
             #region Adds
-            var date1 = new DateTime(2008, 3, 1, 7, 0, 0);
-            Sessions = new ObservableCollection<SessionData>
-            {
-                new SessionData
-                {
-                    SessionNumber = 4,
-                    Organization = "ВВлдавы",
-                    Agent = new Agent { Ion = "sfd"},
-                    Timing = new SessionTiming {
-                    StartTime = date1,
-                    EndTime = DateTime.Now
-                    },
-                    ObjectID = new string[4],
-                    TrackDetectors = new float?[9],
-                    OnlineDetectors = new float?[4]
+            //var date1 = new DateTime(2008, 3, 1, 7, 0, 0);
+            //Sessions = new ObservableCollection<SessionData>
+            //{
+            //    new SessionData
+            //    {
+            //        SessionNumber = 1,
+            //        Organization = "fasdasf",
+            //        Agent = new Agent { Ion = "Ion", EnvironmentId = "IonSreda"},
+            //        Timing = new SessionTiming {
+            //        StartTime = date1.ToString(),
+            //        EndTime = DateTime.Now.ToString()
+            //        }
+            //    },
+            //    new SessionData
+            //    {
+            //        SessionNumber = 3,
+            //        Organization = "fasdasf",
+            //        Agent = new Agent { Ion = "Ion", EnvironmentId = "IonSreda"},
+            //        Timing = new SessionTiming {
+            //        StartTime = date1.ToString(),
+            //        EndTime = DateTime.Now.ToString()
+            //        }
+            //    },
+            //    new SessionData
+            //    {
+            //        SessionNumber = 2,
+            //        Organization = "fasdasf",
+            //        Agent = new Agent { Ion = "Ion", EnvironmentId = "IonSreda"},
+            //        Timing = new SessionTiming {
+            //        StartTime = date1.ToString(),
+            //        EndTime = DateTime.Now.ToString()
+            //        }
+            //    },
+            //    new SessionData
+            //    {
+            //        SessionNumber = 4,
+            //        Organization = "fasdasf",
+            //        Agent = new Agent { Ion = "Ion", EnvironmentId = "IonSreda"},
+            //        Timing = new SessionTiming {
+            //        StartTime = date1.ToString(),
+            //        EndTime = DateTime.Now.ToString()
+            //        }
+            //    },
+            //    new SessionData
+            //    {
+            //        SessionNumber = 5,
+            //        Organization = "fasdasf",
+            //        Agent = new Agent { Ion = "Ion", EnvironmentId = "IonSreda"},
+            //        Timing = new SessionTiming {
+            //        StartTime = date1.ToString(),
+            //        EndTime = DateTime.Now.ToString()
+            //        }
+            //    },
+            //    new SessionData
+            //    {
+            //        SessionNumber = 6,
+            //        Organization = "fasdasf",
+            //        Agent = new Agent { Ion = "Ion", EnvironmentId = "IonSreda"},
+            //        Timing = new SessionTiming {
+            //        StartTime = date1.ToString(),
+            //        EndTime = DateTime.Now.ToString()
+            //        }
+            //    },
+            //    new SessionData
+            //    {
+            //        SessionNumber = 7,
+            //        Organization = "fasdasf",
+            //        Agent = new Agent { Ion = "Ion", EnvironmentId = "IonSreda"},
+            //        Timing = new SessionTiming {
+            //        StartTime = date1.ToString(),
+            //        EndTime = DateTime.Now.ToString()
+            //        }
+            //    },
 
-                },
-                new SessionData
-                {
-                    SessionNumber = 5,
-                    Organization = "fasdasf",
-                    Agent = new Agent { Ion = "Ion"},
-                    Timing = new SessionTiming {
-                    StartTime = date1,
-                    EndTime = DateTime.Now
-                    },
-                    ObjectID = new string[4],
-                    TrackDetectors = new float?[9],
-                    OnlineDetectors = new float?[4]
-                },
-                new SessionData
-                {
-                    SessionNumber = 3,
-                    Organization = "fasdasf",
-                    Agent = new Agent { Ion = "Ion"},
-                    Timing = new SessionTiming {
-                    StartTime = date1,
-                    EndTime = DateTime.Now
-                    },
-                    ObjectID = new string[4],
-                    TrackDetectors = new float?[9],
-                    OnlineDetectors = new float?[4]
-                },
-                new SessionData
-                {
-                    SessionNumber = 1,
-                    Organization = "fasdasf",
-                    Agent = new Agent { Ion = "Ion"},
-                    Timing = new SessionTiming {
-                    StartTime = date1,
-                    EndTime = DateTime.Now
-                    },
-                    ObjectID = new string[4],
-                    TrackDetectors = new float?[9],
-                    OnlineDetectors = new float?[4]
-                },
-                new SessionData
-                {
-                    SessionNumber = 2,
-                    Organization = "fasdasf",
-                    Agent = new Agent { Ion = "Ion"},
-                    Timing = new SessionTiming {
-                    StartTime = date1,
-                    EndTime = DateTime.Now
-                    },
-                    ObjectID = new string[4],
-                    TrackDetectors = new float?[9],
-                    OnlineDetectors = new float?[4]
-                },
-                new SessionData
-                {
-                    SessionNumber = 6,
-                    Organization = "fasdasf",
-                    Agent = new Agent { Ion = "Ion"},
-                    Timing = new SessionTiming {
-                    StartTime = date1,
-                    EndTime = DateTime.Now
-                    },
-                    ObjectID = new string[4],
-                    TrackDetectors = new float?[9],
-                    OnlineDetectors = new float?[4]
-                },
-                new SessionData
-                {
-                    SessionNumber = 7,
-                    Organization = "fasdasf",
-                    Agent = new Agent { Ion = "Ion"},
-                    Timing = new SessionTiming {
-                    StartTime = date1,
-                    EndTime = DateTime.Now
-                    },
-                    ObjectID = new string[4],
-                    TrackDetectors = new float?[9],
-                    OnlineDetectors = new float?[4]
-                },
-                new SessionData
-                {
-                    SessionNumber = 8,
-                    Organization = "fasdasf",
-                    Agent = new Agent { Ion = "Ion"},
-                    Timing = new SessionTiming {
-                    StartTime = date1,
-                    EndTime = DateTime.Now
-                    },
-                    ObjectID = new string[4],
-                    TrackDetectors = new float?[9],
-                    OnlineDetectors = new float?[4]
-                },
-                new SessionData
-                {
-                    SessionNumber = 9,
-                    Organization = "fasdasf",
-                    Agent = new Agent { Ion = "Ion"},
-                    Timing = new SessionTiming {
-                    StartTime = date1,
-                    EndTime = DateTime.Now
-                    },
-                    ObjectID = new string[4],
-                    TrackDetectors = new float?[9],
-                    OnlineDetectors = new float?[4]
-                },
-                new SessionData
-                {
-                    SessionNumber = 10,
-                    Organization = "fasdasf",
-                    Agent = new Agent { Ion = "Ion"},
-                    Timing = new SessionTiming {
-                    StartTime = date1,
-                    EndTime = DateTime.Now
-                    },
-                    ObjectID = new string[4],
-                    TrackDetectors = new float?[9],
-                    OnlineDetectors = new float?[4]
-                },
-            };
+
+            //};
             #endregion
 
             //IsSelected = false;
+            Sessions = new ObservableCollection<SessionData>();
+            RefreshAsync();
             SessionsView = CollectionViewSource.GetDefaultView(Sessions);
 
+            
+
+        }
+
+
+        public async Task RefreshAsync()
+        {
+            
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = await client.GetAsync("https://a6337-c1ef.k.d-f.pw/Session/All");
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                Sessions.Clear();
+                foreach (var session in JsonConvert.DeserializeObject<List<SessionData>>(responseBody))
+                {
+                    Sessions.Add(session);
+                }
+
+            }
+        }
+        public async Task AddAsync(SessionData result)
+        {
+
+            using (HttpClient client = new HttpClient())
+            {
+                var json = JsonConvert.SerializeObject(result);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync("https://a6337-c1ef.k.d-f.pw/Add", content);
+            }
         }
 
     }

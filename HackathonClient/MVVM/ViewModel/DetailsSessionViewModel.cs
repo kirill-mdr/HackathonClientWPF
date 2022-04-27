@@ -23,5 +23,9 @@ namespace HackathonClient.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
+        public DetailsSessionViewModel()
+        {
+
+        }
     }
 }

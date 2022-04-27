@@ -22,6 +22,7 @@ namespace HackathonClient.MVVM.ViewModel
                 OnPropertyChanged();
             } 
         }
+
         #region Commands
         private RelayCommand _saveCommand;
         public RelayCommand SaveCommand
@@ -44,7 +45,7 @@ namespace HackathonClient.MVVM.ViewModel
         #endregion
         public EditSessionViewModel()
         {
-
+            
         }
     }
 }
